@@ -3,7 +3,7 @@ const path = require('path');
 let config = {
   erickao: {
     autoStart: true,
-    roomName: `ERICKÃO (evento-teste)`,
+    roomName: process.env.HAXBALL_ROOM_NAME,
     playerName: `Mr. Bolotti`,
     noPlayer: true,
     maxPlayers: 20,
@@ -57,7 +57,8 @@ let config = {
         }
       },
       'hr/win-streak': {},
-      'sav/force-same-name': {}
+      'sav/force-same-name': {},
+      'chr/colors': {}
     },
   },
 };
