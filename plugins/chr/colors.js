@@ -94,6 +94,105 @@ const colorsList = [
       textColor: 0x30F1FF,
       colors: [0xA86A19, 0xE0B95E]
     }
+  },
+  {
+    name: 'Afogados',
+    type: 1,
+    options: {
+      angle: 45,
+      textColor: 0xD4D6D6,
+      colors: [0xD4D6D6, 0x004077, 0xD4D6D6]
+    }
+  },
+  {
+    name: 'Afogados',
+    type: 2,
+    options: {
+      angle: 180,
+      textColor: 0x004077,
+      colors: [0xD4D6D6, 0xD4D6D6, 0xD4D6D6]
+    }
+  },
+  {
+    name: 'Barba Flu',
+    type: 1,
+    options: {
+      angle: 65,
+      textColor: 0xFFFFFF,
+      colors: [0xFF8000, 0xFF8000, 0x000000]
+    }
+  },
+  {
+    name: 'Barba Flu',
+    type: 2,
+    options: {
+      angle: 0,
+      textColor: 0xFFFFFF,
+      colors: [0x107500, 0x940000, 0x107500]
+    }
+  },
+  {
+    name: 'Dribles Sacanas',
+    type: 1,
+    options: {
+      angle: 231,
+      textColor: 0xFFFFFF,
+      colors: [0x000000, 0x9E1313, 0x000000]
+    }
+  },
+  {
+    name: 'Marra Pura',
+    type: 1,
+    options: {
+      angle: 90,
+      textColor: 0xD1BE17,
+      colors: [0xFCE400, 0xFFFFFF, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Marra Pura',
+    type: 2,
+    options: {
+      angle: 90,
+      textColor: 0xD1BE17,
+      colors: [0xFCE400, 0x000000, 0x000000]
+    }
+  },
+  {
+    name: 'Pó Pó Pó',
+    type: 1,
+    options: {
+      angle: -60,
+      textColor: 0x000000,
+      colors: [0xFFFFFF, 0xFF00AA, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Pó Pó Pó',
+    type: 2,
+    options: {
+      angle: -60,
+      textColor: 0xFFFFFF,
+      colors: [0x0E0C00, 0x0E0C00, 0xFF00AA]
+    }
+  },
+  {
+    name: 'Vitória do Bahia',
+    type: 1,
+    options: {
+      angle: 60,
+      textColor: 0xFFFFFF,
+      colors: [0x000000, 0xFF0000, 0x0016E0]
+    }
+  },
+  {
+    name: 'Vitória do Bahia',
+    type: 2,
+    options: {
+      angle: 60,
+      textColor: 0xFFFFFF,
+      colors: [0x00A60B, 0x6B93FF, 0xE00000]
+    }
   }
 ];
 
