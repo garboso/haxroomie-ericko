@@ -58,6 +58,42 @@ const colorsList = [
       textColor: 0xFFFFFF,
       colors: [0x000000, 0xFF1900, 0x000000]
     }
+  },
+  {
+    name: 'Mistos',
+    type: 1,
+    options: {
+      angle: 0,
+      textColor: 0x309111,
+      colors: [0xDE0000, 0xDE0000, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Mistos',
+    type: 2,
+    options: {
+      angle: 0,
+      textColor: 0xDE0000,
+      colors: [0xFFFFFF, 0x309111, 0x309111]
+    }
+  },
+  {
+    name: 'Armandinho',
+    type: 1,
+    options: {
+      angle: 34,
+      textColor: 0xFFF7FD,
+      colors: [0x0080FF, 0xCCC8CA, 0x0F8C24]
+    }
+  },
+  {
+    name: 'Armandinho',
+    type: 2,
+    options: {
+      angle: 90,
+      textColor: 0x30F1FF,
+      colors: [0xA86A19, 0xE0B95E]
+    }
   }
 ];
 
