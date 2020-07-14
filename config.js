@@ -1,7 +1,8 @@
 const path = require('path');
 
-let config = {
-  erickao: {
+const config = {
+  erickao:
+  {
     autoStart: true,
     roomName: process.env.HAXBALL_ROOM_NAME,
     playerName: `Mr. Bolotti`,
@@ -57,7 +58,6 @@ let config = {
         }
       },
       'hr/win-streak': {},
-      'sav/force-same-name': {},
       'chr/colors': {}
     },
   },
