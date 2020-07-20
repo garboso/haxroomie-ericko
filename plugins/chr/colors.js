@@ -17,6 +17,7 @@ const colorsList = [
   {
     name: 'Lion Heart',
     type: 1,
+    code: 'LH1',
     options: {
       angle: 115,
       textColor: 0xFFFFFF,
@@ -26,6 +27,7 @@ const colorsList = [
   {
     name: 'Lion Heart',
     type: 2,
+    code: 'LH2',
     options: {
       angle: 90,
       textColor: 0xFFFFFF,
@@ -33,35 +35,9 @@ const colorsList = [
     }
   },
   {
-    name: 'Boca Juniors',
-    type: 1,
-    options: {
-      angle: 90,
-      textColor: 0xFFFFFF,
-      colors: [0x000482, 0xFFE70D, 0x230085]
-    }
-  },
-  {
-    name: 'River Plate',
-    type: 1,
-    options: {
-      angle: 55,
-      textColor: 0x0A0A0A,
-      colors: [0xFFFDFC, 0xFF0A0A, 0xFAF7F7]
-    }
-  },
-  {
-    name: 'River Plate',
-    type: 2,
-    options: {
-      angle: 145,
-      textColor: 0xFFFFFF,
-      colors: [0x000000, 0xFF1900, 0x000000]
-    }
-  },
-  {
     name: 'Mistos',
     type: 1,
+    code: 'MI1',
     options: {
       angle: 0,
       textColor: 0x309111,
@@ -71,6 +47,7 @@ const colorsList = [
   {
     name: 'Mistos',
     type: 2,
+    code: 'MI2',
     options: {
       angle: 0,
       textColor: 0xDE0000,
@@ -80,6 +57,7 @@ const colorsList = [
   {
     name: 'Armandinho',
     type: 1,
+    code: 'AR1',
     options: {
       angle: 34,
       textColor: 0xFFF7FD,
@@ -89,6 +67,7 @@ const colorsList = [
   {
     name: 'Armandinho',
     type: 2,
+    code: 'AR2',
     options: {
       angle: 90,
       textColor: 0x30F1FF,
@@ -98,6 +77,7 @@ const colorsList = [
   {
     name: 'Afogados',
     type: 1,
+    code: 'AF1',
     options: {
       angle: 45,
       textColor: 0xD4D6D6,
@@ -107,6 +87,7 @@ const colorsList = [
   {
     name: 'Afogados',
     type: 2,
+    code: 'AF2',
     options: {
       angle: 180,
       textColor: 0x004077,
@@ -116,6 +97,7 @@ const colorsList = [
   {
     name: 'Barba Flu',
     type: 1,
+    code: 'BF1',
     options: {
       angle: 65,
       textColor: 0xFFFFFF,
@@ -125,6 +107,7 @@ const colorsList = [
   {
     name: 'Barba Flu',
     type: 2,
+    code: 'BF2',
     options: {
       angle: 0,
       textColor: 0xFFFFFF,
@@ -134,6 +117,7 @@ const colorsList = [
   {
     name: 'Dribles Sacanas',
     type: 1,
+    code: 'DS1',
     options: {
       angle: 231,
       textColor: 0xFFFFFF,
@@ -143,6 +127,7 @@ const colorsList = [
   {
     name: 'Marra Pura',
     type: 1,
+    code: 'MP1',
     options: {
       angle: 90,
       textColor: 0xD1BE17,
@@ -152,6 +137,7 @@ const colorsList = [
   {
     name: 'Marra Pura',
     type: 2,
+    code: 'MP2',
     options: {
       angle: 90,
       textColor: 0xD1BE17,
@@ -161,6 +147,7 @@ const colorsList = [
   {
     name: 'Pó Pó Pó',
     type: 1,
+    code: 'PO1',
     options: {
       angle: -60,
       textColor: 0x000000,
@@ -170,6 +157,7 @@ const colorsList = [
   {
     name: 'Pó Pó Pó',
     type: 2,
+    code: 'PO2',
     options: {
       angle: -60,
       textColor: 0xFFFFFF,
@@ -179,6 +167,7 @@ const colorsList = [
   {
     name: 'Vitória do Bahia',
     type: 1,
+    code: 'VB1',
     options: {
       angle: 60,
       textColor: 0xFFFFFF,
@@ -188,10 +177,61 @@ const colorsList = [
   {
     name: 'Vitória do Bahia',
     type: 2,
+    code: 'VB2',
     options: {
       angle: 60,
       textColor: 0xFFFFFF,
       colors: [0x00A60B, 0x6B93FF, 0xE00000]
+    }
+  },
+  {
+    name: 'Loukos',
+    type: 1,
+    code: 'LO1',
+    options: {
+      angle: 0,
+      textColor: 0xFFFFFF,
+      colors: [0xFFFFFF, 0xC40A1C, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Loukos',
+    type: 2,
+    code: 'LO2',
+    options: {
+      angle: 1,
+      textColor: 0xFFFFFF,
+      colors: [0x00A60B, 0x6B93FF, 0xE00000]
+    }
+  },
+  {
+    name: 'Vendo Monza',
+    type: 1,
+    code: 'VM1',
+    options: {
+      angle: 120,
+      textColor: 0x001E30,
+      colors: [0x660000, 0x7D0000, 0x7D0000]
+    }
+  },
+  {
+    name: 'Vendo Monza',
+    type: 2,
+    code: 'VM2',
+    options: {
+      angle: 60,
+      textColor: 0x002033,
+      colors: [0xFFFFFF, 0xFF3030, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Bomba de Savvoya',
+    type: 1,
+    code: 'BS1',
+    options: {
+      angle: 90,
+      textColor: 0x0046B5,
+      colors: [0x0046B5, 0xFFFFFF, 0xFF0022]
     }
   }
 ];
@@ -200,7 +240,7 @@ const RED_ID = 1,
   BLUE_ID = 2;
 
 function getColorsList() {
-  return colorsList.map((color) => `${color.name} - ${color.type}`);
+  return colorsList.map((color) => `${color.name} #${color.type} (${color.code})`);
 }
 
 function resetColors(player) {
@@ -213,12 +253,12 @@ function resetColors(player) {
 }
 
 function listAllColors(player) {
-  const colorsListMessage = getColorsList().sort().join('\n');
+  const colorsListMessage = getColorsList().sort().join(', ');
   room.sendAnnouncement(colorsListMessage, player.id);
 }
 
-function setColors(teamId, colorName, colorType) {
-  const colorSelected = colorsList.filter((color) => color.name === colorName && color.type === colorType)[0];
+function setColors(teamId, colorCode) {
+  const colorSelected = colorsList.filter((color) => color.code === colorCode)[0];
 
   if (colorSelected != null) {
     room.setTeamColors(teamId,
@@ -242,9 +282,8 @@ function isAdmin(player) {
 function setColorsCommand(teamId, player, args) {
   if (!isAdmin(player)) return;
 
-  const fullName = args.join(' ').split(' - ');
-
-  const colorName = fullName[0],
+  const fullName = args.join(' ').split(' - '),
+    colorName = fullName[0],
     colorType = fullName[1];
 
   if (!setColors(teamId, colorName, parseInt(colorType))) {
