@@ -45,7 +45,7 @@ room.onCommand_disableDraw = (player) => {
 
 room.onGameTick = () => {
   const scores = room.getScores();
-  if (scores.time >= scores.timeLimit && scores.timeLimit != 0 && scores.red === scores.blue) {
+  if (scores.time >= scores.timeLimit && scores.timeLimit != 0 && scores.red === scores.blue && drawEnabled) {
     room.stopGame();
   }
 };
