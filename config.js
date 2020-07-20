@@ -44,7 +44,10 @@ const config = {
         }
       },
       'hr/win-streak': {},
-      'chr/colors': {}
+      'chr/colors': {},
+      'chr/draw': {
+        enabled: false
+      }
     }
   },
   roufaotao:
