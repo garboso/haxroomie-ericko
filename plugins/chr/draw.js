@@ -1,7 +1,7 @@
 const room = HBInit();
 
 room.pluginSpec = {
-  name: 'chr/colors',
+  name: 'chr/draw',
   author: 'garboso',
   version: '1.0.0',
   dependencies: [
@@ -45,7 +45,7 @@ room.onCommand_disableDraw = (player) => {
 
 room.onGameTick = () => {
   const scores = room.getScores();
-  if (scores.time >= scores.timeLimit && scores.timeLimit != 0) {
+  if (scores.time >= scores.timeLimit && scores.timeLimit != 0 && scores.red === scores.blue) {
     room.stopGame();
   }
 };
