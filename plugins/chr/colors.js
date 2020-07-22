@@ -229,9 +229,9 @@ const colorsList = [
     type: 1,
     code: 'BS1',
     options: {
-      angle: 90,
-      textColor: 0x0046B5,
-      colors: [0x0046B5, 0xFFFFFF, 0xFF0022]
+      angle: 0,
+      textColor: 0x1100FF,
+      colors: [0x0E8700, 0xFFFFFF, 0xE80F00]
     }
   }
 ];
