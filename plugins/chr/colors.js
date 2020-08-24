@@ -293,8 +293,6 @@ function isAdmin(player) {
 }
 
 function setColorsCommand(teamId, player, args) {
-  if (!isAdmin(player)) return;
-
   const fullName = args.join(' ').split(' - '),
     colorName = fullName[0],
     colorType = fullName[1];
@@ -443,14 +441,18 @@ room.onCommand_listColors = {
 };
 
 room.onCommand_enableColorsStreak = {
-  function: () => {
+  function: (player) => {
+    if (!isAdmin(player)) return;
+
     colorsStreakEnabled = true;
     room.sendAnnouncement('🔥 Colors will be a little warmer when a team is on a win streak');
   }
 };
 
 room.onCommand_disableColorsStreak = {
-  function: () => {
+  function: (player) => {
+    if (!isAdmin(player)) return;
+
     colorsStreakEnabled = false;
     setDefaultColors();
     room.sendAnnouncement('Colors streak disabled.');
