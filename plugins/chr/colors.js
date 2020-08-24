@@ -306,9 +306,154 @@ function setColorsCommand(teamId, player, args) {
   }
 }
 
+function changeWinnerColor(scores) {
+  let winnerColor,
+    currentWinnerId,
+    darkerPercent,
+    darkerRatio;
+
+  if (scores.red > scores.blue) {
+    winnerColor = RED_COLOR;
+    currentWinnerId = RED_ID;
+  } else {
+    winnerColor = BLUE_COLOR;
+    currentWinnerId = BLUE_ID;
+  }
+
+  if (lastWinnerId === currentWinnerId) {
+    winStreak++;
+  } else {
+    winStreak = 0;
+  }
+
+  lastWinnerId = currentWinnerId;
+  
+  if (winStreak === 0) {
+    setDefaultColors();
+    return;
+  } else {
+    darkerPercent = (winStreak <= 4 ? 10 : 5);
+    darkerRatio = 1 - ((winStreak * darkerPercent) / 100);
+
+    room.setTeamColors(currentWinnerId, 0, 0xFFFFFF, [getDarkerColor(winnerColor, darkerRatio)]);
+  }
+}
+
+function getDarkerColor(color, ratio) {
+  const currentHSL = RGBToHSL(color[1], color[2], color[3]),
+    darkerLuminance = currentHSL[2] * ratio,
+    newColorRGB = HSLToRGB(currentHSL[0], currentHSL[1], darkerLuminance);
+
+  console.log(`currentHSL: ${currentHSL},\n darkerLuminance: ${darkerLuminance},\n newColorRGB: ${newColorRGB}`);
+
+  return parseInt(RGBToHex(newColorRGB[0], newColorRGB[1], newColorRGB[2]).substr(1), 16);
+}
+
+function RGBToHSL(r, g, b) {
+  r /= 255;
+  g /= 255;
+  b /= 255;
+
+  let cmin = Math.min(r,g,b),
+    cmax = Math.max(r,g,b),
+    delta = cmax - cmin,
+    h = 0,
+    s = 0,
+    l = 0;
+
+  if (delta == 0) {
+    h = 0;
+  }
+  else if (cmax == r) {
+    h = ((g - b) / delta) % 6;
+  }
+  else if (cmax == g) {
+    h = (b - r) / delta + 2;
+  }
+  else {
+    h = (r - g) / delta + 4;
+  }
+  
+  h = Math.round(h * 60);
+
+  if (h < 0)
+    h += 360;
+
+  l = (cmax + cmin) / 2;
+
+  s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+  s = +(s * 100).toFixed(1);
+  l = +(l * 100).toFixed(1);
+
+  return [h, s, l];
+}
+
+function HSLToRGB(h,s,l) {
+  // Must be fractions of 1
+  s /= 100;
+  l /= 100;
+
+  let c = (1 - Math.abs(2 * l - 1)) * s,
+    x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+    m = l - c/2,
+    r = 0,
+    g = 0,
+    b = 0;
+
+  if (0 <= h && h < 60) {
+    r = c; g = x; b = 0;
+  } else if (60 <= h && h < 120) {
+    r = x; g = c; b = 0;
+  } else if (120 <= h && h < 180) {
+    r = 0; g = c; b = x;
+  } else if (180 <= h && h < 240) {
+    r = 0; g = x; b = c;
+  } else if (240 <= h && h < 300) {
+    r = x; g = 0; b = c;
+  } else if (300 <= h && h < 360) {
+    r = c; g = 0; b = x;
+  }
+  r = Math.round((r + m) * 255);
+  g = Math.round((g + m) * 255);
+  b = Math.round((b + m) * 255);
+
+  return [r, g, b];
+}
+
+function RGBToHex(r,g,b) {
+  r = r.toString(16);
+  g = g.toString(16);
+  b = b.toString(16);
+
+  if (r.length == 1)
+    r = '0' + r;
+  if (g.length == 1)
+    g = '0' + g;
+  if (b.length == 1)
+    b = '0' + b;
+
+  return '#' + r + g + b;
+}
+
 room.onCommand_listColors = {
   function: (player) => {
     listAllColors(player);
+  }
+};
+
+room.onCommand_enableColorsStreak = {
+  function: () => {
+    colorsStreakEnabled = true;
+    room.sendAnnouncement('🔥 Colors will be a little warmer when a team is on a win streak');
+  }
+};
+
+room.onCommand_disableColorsStreak = {
+  function: () => {
+    colorsStreakEnabled = false;
+    setDefaultColors();
+    room.sendAnnouncement('Colors streak disabled.');
   }
 };
 
@@ -327,6 +472,12 @@ room.onCommand_setColorsBlue = {
 room.onCommand_resetColors = {
   function: (player) => {
     resetColors(player);
+  }
+};
+
+room.onTeamVictory = (scores) => {
+  if (colorsStreakEnabled) {
+    changeWinnerColor(scores);
   }
 };
 
