@@ -49,46 +49,6 @@ const config = {
         enabled: false
       }
     }
-  },
-  roufaotao:
-  {
-    autoStart: true,
-    roomName: 'Ratamero Sports Arena 🏟️',
-    noPlayer: true,
-    maxPlayers: 20,
-    public: false,
-    token: process.env.ROUFAOTAO_TOKEN,
-    repositories: [
-      {
-        type: 'github',
-        repository: 'morko/hhm-sala-plugins',
-      },
-      {
-        type: 'local',
-        path: path.join(__dirname, 'plugins'),
-        subpath: 'chr'
-      }
-    ],
-    pluginConfig: {
-      'sav/roles': {
-        roles: {
-          admin: process.env.ROUFAOTAO_ADMIN_PASS
-        }
-      },
-      'sav/players': {},
-      'hr/pause': {
-        maxPauseTimes: 0,
-      },
-      'hr/game-mode': {
-        defaultMap: 'Big',
-        enabledMaps: ['Big']
-      },
-      'hr/kickban': {},
-      'chr/colors': {},
-      'chr/draw': {
-        enabled: true
-      }
-    }
   }
 };
 
