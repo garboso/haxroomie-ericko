@@ -60,7 +60,7 @@ const config = {
     noPlayer: true,
     maxPlayers: 20,
     public: false,
-    token: process.env.HAXBALL_TOKEN,
+    token: process.env.HAXBALL_TOKEN_SECONDARY,
     repositories: [
       {
         type: 'github',
