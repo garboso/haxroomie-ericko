@@ -325,12 +325,12 @@ function changeWinnerColor(scores) {
   }
 
   lastWinnerId = currentWinnerId;
-  
+
   if (winStreak === 0) {
     setDefaultColors();
     return;
   } else {
-    darkerPercent = (winStreak <= 4 ? 10 : 5);
+    darkerPercent = (winStreak <= 4 ? 5 : 2.5);
     darkerRatio = 1 - ((winStreak * darkerPercent) / 100);
 
     room.setTeamColors(currentWinnerId, 0, 0xFFFFFF, [getDarkerColor(winnerColor, darkerRatio)]);
@@ -371,7 +371,7 @@ function RGBToHSL(r, g, b) {
   else {
     h = (r - g) / delta + 4;
   }
-  
+
   h = Math.round(h * 60);
 
   if (h < 0)
