@@ -257,7 +257,7 @@ function resetColors(player) {
 
   setDefaultColors();
 
-  room.sendAnnouncement('Default colors selected.', player.id);
+  room.sendAnnouncement('Uniformes padrão selecionados.', player.id);
 }
 
 function listAllColors(player) {
@@ -298,9 +298,9 @@ function setColorsCommand(teamId, player, args) {
     colorType = fullName[1];
 
   if (!setColors(teamId, colorName, parseInt(colorType))) {
-    room.sendAnnouncement('Color not found.', player.id);
+    room.sendAnnouncement('Uniforme não encontrado.', player.id);
   } else {
-    room.sendAnnouncement('Nice kit.', player.id);
+    room.sendAnnouncement(`Bonita camisa, ${teamId === RED_ID ? 'vermelhinho' : 'azulzinho'}.`, player.id);
   }
 }
 
@@ -445,7 +445,7 @@ room.onCommand_enableColorsStreak = {
     if (!isAdmin(player)) return;
 
     colorsStreakEnabled = true;
-    room.sendAnnouncement('🔥 Colors will be a little warmer when a team is on a win streak');
+    room.sendAnnouncement('🔥 As cores do uniforme ficarão mais quentes quando um time estiver em uma sequência de vitórias.');
   }
 };
 
@@ -455,7 +455,7 @@ room.onCommand_disableColorsStreak = {
 
     colorsStreakEnabled = false;
     setDefaultColors();
-    room.sendAnnouncement('Colors streak disabled.');
+    room.sendAnnouncement('Mudança de uniforme em vitórias invictas desabilitada.');
   }
 };
 
