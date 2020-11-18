@@ -257,12 +257,12 @@ function resetColors(player) {
 
   setDefaultColors();
 
-  room.sendAnnouncement('Uniformes padrão selecionados.', player.id);
+  room.sendAnnouncement('Uniformes padrão selecionados.', player.id, 0x69C969, 'small-bold');
 }
 
 function listAllColors(player) {
   const colorsListMessage = getColorsList().sort().join(', ');
-  room.sendAnnouncement(colorsListMessage, player.id);
+  room.sendAnnouncement(colorsListMessage, player.id, 0x69C969, 'small-bold');
 }
 
 function setColors(teamId, colorCode) {
@@ -286,7 +286,7 @@ function setDefaultColors() {
 
 function isAdmin(player) {
   if (!player.admin) {
-    room.sendAnnouncement('You have to be admin to use this command!', player.id, 0xff0000);
+    room.sendAnnouncement('Você não possui privilégios para usar esse comando.', player.id, 0xCF3838, 'small-bold');
     return false;
   }
   return true;
@@ -298,9 +298,9 @@ function setColorsCommand(teamId, player, args) {
     colorType = fullName[1];
 
   if (!setColors(teamId, colorName, parseInt(colorType))) {
-    room.sendAnnouncement('Uniforme não encontrado.', player.id);
+    room.sendAnnouncement('Uniforme não encontrado.', player.id, 0xCF3838, 'small-bold');
   } else {
-    room.sendAnnouncement(`Bonita camisa, ${teamId === RED_ID ? 'vermelhinho' : 'azulzinho'}.`, player.id);
+    room.sendAnnouncement(`Bonita camisa, ${teamId === RED_ID ? 'vermelhinho' : 'azulzinho'}.`, player.id, 0x69C969, 'small-bold');
   }
 }
 
@@ -434,44 +434,44 @@ function RGBToHex(r,g,b) {
   return '#' + r + g + b;
 }
 
-room.onCommand_listColors = {
+room.onCommand_listar_uniformes = {
   function: (player) => {
     listAllColors(player);
   }
 };
 
-room.onCommand_enableColorsStreak = {
+room.onCommand_habilitar_uniformes_invencibilidade = {
   function: (player) => {
     if (!isAdmin(player)) return;
 
     colorsStreakEnabled = true;
-    room.sendAnnouncement('🔥 As cores do uniforme ficarão mais quentes quando um time estiver em uma sequência de vitórias.');
+    room.sendAnnouncement('🔥 As cores do uniforme ficarão mais quentes quando um time estiver em uma sequência de vitórias.', 0x69C969, 'small-bold');
   }
 };
 
-room.onCommand_disableColorsStreak = {
+room.onCommand_desabilitar_uniformes_invencibilidade = {
   function: (player) => {
     if (!isAdmin(player)) return;
 
     colorsStreakEnabled = false;
     setDefaultColors();
-    room.sendAnnouncement('Mudança de uniforme em vitórias invictas desabilitada.');
+    room.sendAnnouncement('Mudança de uniforme em sequência de vitórias desabilitada.', 0x69C969, 'small-bold');
   }
 };
 
-room.onCommand_setColorsRed = {
+room.onCommand_definir_uniforme_red = {
   function: (player, args) => {
     setColorsCommand(RED_ID, player, args);
   }
 };
 
-room.onCommand_setColorsBlue = {
+room.onCommand_definir_uniforme_blue = {
   function: (player, args) => {
     setColorsCommand(BLUE_ID, player, args);
   }
 };
 
-room.onCommand_resetColors = {
+room.onCommand_reiniciar_uniformes = {
   function: (player) => {
     resetColors(player);
   }

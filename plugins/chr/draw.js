@@ -17,28 +17,28 @@ let drawEnabled = room.pluginSpec.config.enabled;
 
 function enableDraw(player) {
   drawEnabled = true;
-  room.sendAnnouncement('Draw is enabled. Game will stop at time limit.', player.id);
+  room.sendAnnouncement('Empate está habilitado. O jogo encerrará sem prorrogação.', player.id, 0x69C969, 'small-bold');
 }
 
 function disableDraw(player) {
   drawEnabled = false;
-  room.sendAnnouncement('Draw is disabled.', player.id);
+  room.sendAnnouncement('Empate está desabilitado.', player.id, 0x69C969, 'small-bold');
 }
 
 function isAdmin(player) {
   if (!player.admin) {
-    room.sendAnnouncement('You have to be admin to use this command!', player.id, 0xff0000);
+    room.sendAnnouncement('Você não possui privilégios para usar esse comando.', player.id, 0xCF3838, 'small-bold');
     return false;
   }
   return true;
 }
 
-room.onCommand_enableDraw = (player) => {
+room.onCommand_habilitar_empate = (player) => {
   if (!isAdmin(player)) return;
   enableDraw(player);
 };
 
-room.onCommand_disableDraw = (player) => {
+room.onCommand_desabilitar_empate = (player) => {
   if (!isAdmin(player)) return;
   disableDraw(player);
 };
