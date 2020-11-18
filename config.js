@@ -55,7 +55,10 @@ const config = {
       'chr/draw': {
         enabled: false
       },
-      'chr/fake-soccer-news': {}
+      'chr/fake-soccer-news': {},
+      'chr/game-review': {
+        url: process.env.DISCORD_WEBHOOK
+      }
     }
   }
 };
