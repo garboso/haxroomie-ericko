@@ -36,9 +36,9 @@ function createReview() {
   data.username = 'Milton Bolotti';
   data.avatar_url = 'https://i.imgur.com/wVh6C4h.png';
   data.content = `${getScoreMessage(stats.getScore())}\n`;
-  data.content += `${getGoalsListMessage(stats.getGoals())}\n`;
+  if (stats.getGoals().length > 0) data.content += `${getGoalsListMessage(stats.getGoals())}\n`;
   data.content += `${getPossessionPerTeamMessage(stats.getPossessionPerTeam())}\n`;
-  data.content += `${getPlayersPossessionMessage(stats.getPlayersPossessionStats())}\n`;
+  data.content += ` ${getPlayersPossessionMessage(stats.getPlayersPossessionStats())}\n`;
 
   xhttp.open('POST', url, true);
   xhttp.setRequestHeader('Content-Type', 'application/json');
@@ -52,7 +52,9 @@ function createReview() {
 }
 
 function getScoreMessage(score) {
-  return `Vitória do **${(score.red > score.blue ? 'vermelho' : 'azul')}**!\n`.toUpperCase() +
+  const message = (score.red === score.blue ? `Empate!\n` : `Vitória do **${(score.red > score.blue ? 'vermelho' : 'azul')}**!\n`);
+
+  return message.toUpperCase() +
   `\n🔴 ${score.red} - ${score.blue} 🔵\n`;
 }
 
@@ -98,8 +100,7 @@ function getTeamScoredIcon(goal) {
 
 function getPossessionPerTeamMessage(percentage) {
   return `**Posse de Bola**\n\`\`\``.toUpperCase() +
-    `🔴 ${percentage[`1`]}%\n` +
-    `🔵 ${percentage[`2`]}%\n\`\`\``;
+    `🔴 ${percentage[`1`]}% - ${percentage[`2`]} 🔵\`\`\``;
 }
 
 function getPlayersPassingMessage(stats) {
@@ -127,8 +128,12 @@ room.onGameStart = () => {
   gameEnded = false;
 };
 
-room.onTeamVictory = () => {
-  createReview();
+room.onGamePause = () => {
+  const score = room.getScores();
+
+  if (score.time >= score.timeLimit) {
+    createReview();
+  }
 };
 
 room.onRoomLink = () => {

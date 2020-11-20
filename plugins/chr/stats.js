@@ -32,7 +32,7 @@ let distributionBall = {
     assister: null,
   },
   goals = [],
-  score = {};
+  score = { red: 0, blue: 0 };
 
 
 function updateDistribution() {

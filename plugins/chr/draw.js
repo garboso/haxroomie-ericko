@@ -46,6 +46,10 @@ room.onCommand_desabilitar_empate = (player) => {
 room.onGameTick = () => {
   const scores = room.getScores();
   if (scores.time >= scores.timeLimit && scores.timeLimit != 0 && scores.red === scores.blue && drawEnabled) {
-    room.stopGame();
+    room.pauseGame(true);
+
+    setTimeout(function () {
+      room.stopGame();
+    }, 5000);
   }
 };
