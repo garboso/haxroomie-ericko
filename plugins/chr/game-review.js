@@ -71,7 +71,6 @@ function getIcons() {
 }
 
 function getFixtureMessage(fixture) {
-  room.sendAnnouncement(JSON.stringify(gameInfo.getMatchInfo()));
   if (fixture !== null) {
     if (fixture === 0) return `Amistoso`;
     else return `${fixture}ª rodada`;
