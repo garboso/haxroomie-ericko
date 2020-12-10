@@ -1,6 +1,6 @@
 const path = require('path');
 const config = {
-  erickao:
+  amigavel:
   {
     autoStart: true,
     roomName: 'ERICKÃO - Amigável',
@@ -26,7 +26,7 @@ const config = {
     pluginConfig: {
       'sav/roles': {
         roles: {
-          admin: process.env.HAXBALL_ADMIN_PASS
+          admin: process.env.AMIGAVEL_ADMIN_PASS
         }
       },
       'sav/players': {},
@@ -57,8 +57,67 @@ const config = {
       },
       'chr/fake-soccer-news': {},
       'chr/game-review': {
-        url: process.env.DISCORD_WEBHOOK
+        championshipMode: false,
+        discord: { enabled: process.env.AMIGAVEL_DISCORD_IS_ENABLED, url: process.env.AMIGAVEL_DISCORD_WEBHOOK },
+        ericko: { enabled: process.env.AMIGAVEL_ERICKO_IS_ENABLED, token: process.env.AMIGAVEL_ERICKO_TOKEN }
+      },
+      'chr/game-info': {},
+      'chr/narrator': {}
+    }
+  },
+  campeonato:
+  {
+    autoStart: true,
+    roomName: 'Ratamero Sports Arena',
+    noPlayer: true,
+    maxPlayers: 20,
+    public: false,
+    token: process.env.CAMPEONATO_TOKEN,
+    repositories: [
+      {
+        type: 'github',
+        repository: 'morko/hhm-sala-plugins',
+      },
+      {
+        type: 'github',
+        repository: 'rubebeben/hhm-plugins'
+      },
+      {
+        type: 'github',
+        repository: 'sav/hhm-plugins'
+      },
+      {
+        type: 'local',
+        path: path.join(__dirname, 'plugins'),
+        subpath: 'chr'
       }
+    ],
+    pluginConfig: {
+      'sav/roles': {
+        roles: {
+          admin: process.env.CAMPEONATO_ADMIN_PASS
+        }
+      },
+      'sav/players': {},
+      'hr/always-one-admin': {},
+      'hr/pause': {
+        maxPauseTimes: 0,
+      },
+      'hr/game-mode': {
+        defaultMap: 'Big',
+        enabledMaps: ['Big']
+      },
+      'chr/colors': {},
+      'chr/draw': {
+        enabled: true
+      },
+      'chr/fake-soccer-news': {},
+      'chr/game-review': {
+        discord: { enabled: process.env.CAMPEONATO_DISCORD_IS_ENABLED, url: process.env.CAMPEONATO_DISCORD_WEBHOOK },
+        ericko: { enabled: process.env.CAMPEONATO_ERICKO_IS_ENABLED, token: process.env.CAMPEONATO_ERICKO_TOKEN }
+      },
+      'chr/game-info': {},
+      'chr/narrator': {}
     }
   }
 };
