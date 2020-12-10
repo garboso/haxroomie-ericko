@@ -5,8 +5,7 @@ room.pluginSpec = {
   author: 'garboso',
   version: '1.0.0',
   dependencies: [
-    'sav/core',
-    'sav/commands'
+    'sav/core'
   ],
   config: {
     enabled: false
@@ -19,11 +18,11 @@ const TEAMS = ["Arsenal","Aston Villa","Brighton & Hove Albion","Burnley","Chels
   CURRENCIES = ['euros', 'reais', 'dólares', 'libras'],
   POSITIONS = {"G": 'goleiro', "D": 'defensor', "M": 'meia', "F": 'atacante'};
 
-function generateOneTransfer() {
+function getOneTransfer() {
   const randomTeam = TEAMS[Math.floor(Math.random() * TEAMS.length)],
     randomPlayer = PLAYERS[Math.floor(Math.random() * PLAYERS.length)];
 
-  room.sendAnnouncement(generateTransferPhrase(randomPlayer, randomTeam), null, 0x06AA48, 'small-bold');
+  return generateTransferPhrase(randomPlayer, randomTeam);
 }
 
 function generateTransferPhrase(player, newTeam) {
@@ -39,8 +38,4 @@ function generateTransferPhrase(player, newTeam) {
   return `${header}${position}${gentilic}${player.name} do ${player.currentTeam} ${verbs[randomVerb]} ${newTeam} ${showCurrency ? `por ${randomValue} MUSD de ${randomCurrency}` : ''}`.toUpperCase();
 }
 
-room.onCommand_mercado = {
-  function: () => {
-    generateOneTransfer();
-  }
-};
+room.getOneTransfer = getOneTransfer;
