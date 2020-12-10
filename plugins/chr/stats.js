@@ -235,7 +235,7 @@ room.getScore = () => {
   return score;
 };
 
-room.outputDistribution = () => {
+room.getDistributionAreaPercentages = () => {
   return calculatePercentage(distributionBall);
 };
 
