@@ -19,11 +19,13 @@ const RED_ID = 1,
 
 let gameEnded = true,
   teams,
+  gameInfo,
   ICONS;
 
 function createReview() {
-  const stats = room.getPlugin(`chr/stats`),
-    gameInfo = room.getPlugin(`chr/game-info`);
+  const stats = room.getPlugin(`chr/stats`);
+
+  gameInfo = room.getPlugin(`chr/game-info`);
 
   teams = gameInfo.getTeams();
   ICONS = getIcons();
@@ -46,7 +48,8 @@ function sendDiscordReview(stats, url) {
 
   data.username = 'Milton Bolotti';
   data.avatar_url = 'https://i.imgur.com/wVh6C4h.png';
-  data.content = `${getScoreMessage(stats.getScore())}\n`;
+  data.content = `${getFixtureMessage(gameInfo.getMatchInfo().fixture)}\n`;
+  data.content += `${getScoreMessage(stats.getScore())}\n`;
   if (stats.getGoals().length > 0) data.content += `${getGoalsListMessage(stats.getGoals())}\n`;
   data.content += `${getPossessionPerTeamMessage(stats.getPossessionPerTeam())}\n`;
   data.content += `${getPossessionAreaMessage(stats.getDistributionAreaPercentages())}\n`;
@@ -65,6 +68,16 @@ function sendDiscordReview(stats, url) {
 
 function getIcons() {
   return { 1: teams[RED_ID].icon, 2: teams[BLUE_ID].icon };
+}
+
+function getFixtureMessage(fixture) {
+  room.sendAnnouncement(JSON.stringify(gameInfo.getMatchInfo()));
+  if (fixture !== null) {
+    if (fixture === 0) return `Amistoso`;
+    else return `${fixture}ª rodada`;
+  } else {
+    return ``;
+  }
 }
 
 function getScoreMessage(score) {
