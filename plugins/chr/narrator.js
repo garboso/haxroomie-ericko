@@ -12,14 +12,17 @@ room.pluginSpec = {
     `sav/cron`,
     `chr/game-info`,
     `chr/fake-soccer-news`,
-    `chr/stats`
+    `chr/stats`,
+    `chr/draw`
   ]
 };
 
 let gameRunning = false,
+  gameEnded = false,
   goalScored = false,
   gamePaused = false,
-  teams;
+  matchInfo,
+  isDrawEnabled;
 
 const gameInfo = room.getPlugin(`chr/game-info`),
   news = room.getPlugin(`chr/fake-soccer-news`),
@@ -141,7 +144,10 @@ room.onGameUnpause = () => {
 };
 
 room.onGameStart = () => {
+  matchInfo = gameInfo.getMatchInfo();
+  gameEnded = false;
   sendOpeningPhrase();
+  isDrawEnabled = room.getPlugin(`chr/draw`).isDrawEnabled();
 };
 
 room.onTeamGoal = () => {
