@@ -262,7 +262,7 @@ room.onCron60GameSeconds = () => {
   sendPossessionTeamsPhrase();
 };
 
-room.onCron75GameSeconds = () => {
+room.onCron120GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionAreaPhrase();
