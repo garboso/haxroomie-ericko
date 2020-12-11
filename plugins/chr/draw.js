@@ -33,6 +33,10 @@ function isAdmin(player) {
   return true;
 }
 
+room.isDrawEnabled = () => {
+  return drawEnabled;
+};
+
 room.onCommand_habilitar_empate = (player) => {
   if (!isAdmin(player)) return;
   enableDraw(player);
