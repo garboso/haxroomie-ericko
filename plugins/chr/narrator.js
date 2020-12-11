@@ -32,7 +32,7 @@ function sendKickOffPhrase () {
   const messages = ['Rolou o melão!',
     'Acerta o seu daí que eu arredondo o meu daqui, eeeessstá valendo!',
     'Bola em jogo pra você ligado no Hax!',
-    `Autoriza o árbitro, mexe na bola o ${teams[1].name}!`,
+    `Autoriza o árbitro, mexe na bola o ${matchInfo.teams[1].name}!`,
     'Bola rolando!'];
 
   let message = `${messages[Math.floor(Math.random() * messages.length)].toUpperCase()}`;
@@ -41,10 +41,8 @@ function sendKickOffPhrase () {
 }
 
 function sendOpeningPhrase () {
-  let message = `Os times já estão alinhados em campo e prontos para o início da partida.\n`;
-
-  const matchInfo = gameInfo.getMatchInfo();
-  teams = matchInfo.teams;
+  let message = `Os times já estão alinhados em campo e prontos para o início da partida.\n`,
+    teams = matchInfo.teams;
 
   message += `${(matchInfo.fixture !== null ? (matchInfo.fixture === 0 ? `Amistoso` : `${matchInfo.fixture}ª rodada`) : ``)} \n\n`;
   message += `${teams[1].icon} ${teams[1].name} - ${teams[2].name} ${teams[2].icon} \n\n`;
@@ -76,10 +74,10 @@ function sendGoalPhrase() {
 
 function getGoalTeam(goal) {
   if (goal.isOwnGoal) {
-    if (goal.scorer.team === 1) return teams[2];
-    if (goal.scorer.team === 2) return teams[1];
+    if (goal.scorer.team === 1) return matchInfo.teams[2];
+    if (goal.scorer.team === 2) return matchInfo.teams[1];
   } else {
-    return teams[goal.scorer.team];
+    return matchInfo.teams[goal.scorer.team];
   }
 }
 
