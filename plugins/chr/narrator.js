@@ -268,8 +268,10 @@ room.onCron120GameSeconds = () => {
   sendPossessionAreaPhrase();
 };
 
-room.onCron120GameSeconds = () => {
+room.onCron175GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
-  room.sendAnnouncement(news.getOneTransfer(), null, 0xEBEBEB, 'small-italic');
+  let message = (Math.round(Math.random() * 1) === 0 ? news.getOneTransfer() : news.getOneFakeNews());
+
+  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
 };
