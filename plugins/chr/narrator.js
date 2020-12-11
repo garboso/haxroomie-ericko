@@ -83,22 +83,93 @@ function getGoalTeam(goal) {
 
 function sendPausePhrase() {
   const messages = ['Pare!',
-    'Tá lá o corpo estendido no chão!',
-    'Pediu pra parar, parou!'];
+      'Tá lá o corpo estendido no chão!',
+      'Pediu pra parar, parou!'],
+    score = room.getScores();
 
-  let message = `${messages[Math.floor(Math.random() * messages.length)].toUpperCase()}`;
+  if (score.time >= score.timeLimit) {
+    return;
+  } else {
+    let message = `${messages[Math.floor(Math.random() * messages.length)].toUpperCase()}`;
+    room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
+  }
+}
+
+function sendEndingPhrase(isDrawEnabled) {
+  const score = room.getScores(),
+    goals = stats.getGoals(),
+    percentagePerTeam = stats.getPossessionPerTeam(),
+    areaPercentage = stats.getDistributionAreaPercentages();
+
+  let message;
+
+  message = `Apita o árbitro, final de jogo! `.toUpperCase();
+
+  message += getResultPhrase(score, isDrawEnabled).toUpperCase();
+  message += `\n${getCurrentScorePhrase(score)}\n`;
+
+  if (goals.length > 0) {
+    message += `Gols: `;
+    goals.forEach((goal) => {
+      message += `${getFormattedGoalTime(goal.time)} ${getTeamScoredIcon(goal)} ${goal.scorer.name}${goal.isOwnGoal === true ? ' (contra)' : ''}${goal.assist != null ? ` (${goal.assist.name})` : ''}, `;
+    });
+    message = `${message.slice(0, -2)}\n`;
+  }
+
+  message += `${getTeamsPossessionPhrase(matchInfo.teams, percentagePerTeam)}\n`;
+  message += `${getDistributionAreaPhrase(matchInfo.teams, areaPercentage)}`;
 
   room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
 }
 
-function sendPossessionTeamsPhrase () {
-  const percentage = stats.getPossessionPerTeam();
-  let message = `\n\nPosse de Bola\n\n`.toUpperCase();
+function getResultPhrase(score, isDrawEnabled) {
+  if (isDrawEnabled && score.red === score.blue) {
+    return `O jogo terminou em empate!`;
+  } else {
+    return `Vitória do ${(score.red > score.blue ? matchInfo.teams[1].name : matchInfo.teams[2].name)}!`;
+  }
+}
 
-  teams = gameInfo.getTeams();
-  message += `   ${teams[1].icon}  ${percentage[1]}%\n   ${teams[2].icon}  ${percentage[2]}%`;
+function getCurrentScorePhrase(score) {
+  return `${matchInfo.teams[1].icon} ${score.red} - ${score.blue} ${matchInfo.teams[2].icon}`;
+}
 
-  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
+function sendPossessionTeamsPhrase() {
+  const percentages = stats.getPossessionPerTeam(),
+    teams = matchInfo.teams;
+
+  if (room.getScores() <= 30) {
+    return;
+  }
+  else {
+    room.sendAnnouncement(getTeamsPossessionPhrase(teams, percentages), null, 0xEBEBEB, 'small-italic');
+  }
+}
+
+function sendPossessionAreaPhrase() {
+  const percentages = stats.getPossessionPerTeam(),
+    teams = matchInfo.teams;
+
+  if (room.getScores() <= 30) {
+    return;
+  }
+  else {
+    room.sendAnnouncement(getDistributionAreaPhrase(teams, percentages), null, 0xEBEBEB, 'small-italic');
+  }
+}
+
+function getTeamsPossessionPhrase(teams, percentagePerTeam) {
+  return `Posse de Bola: ${teams[1].icon} ${percentagePerTeam[1]}% - ${teams[2].icon} ${percentagePerTeam[2]}%`;
+}
+
+function getDistributionAreaPhrase(teams, percentages) {
+  let message = `Distribuição de posse pelo campo: ${teams[1].icon} `;
+
+  for (let key in percentages) {
+    message += `${percentages[key]}% | `;
+  }
+
+  return `${message.slice(0, -3)} ${teams[2].icon}`;
 }
 
 function getFormattedGoalTime(time) {
@@ -116,8 +187,30 @@ function addPadZeroIfNecessary(unit) {
   return unit;
 }
 
+function getTeamScoredIcon(goal) {
+  if (goal.scorer.team === 1) {
+    if (!goal.isOwnGoal)
+      return matchInfo.teams[1].icon;
+    else
+      return matchInfo.teams[2].icon;
+  }
+  else if (goal.scorer.team === 2) {
+    if (!goal.isOwnGoal)
+      return matchInfo.teams[2].icon;
+    else
+      return matchInfo.teams[1].icon;
+  }
+}
+
+function checkIfGameEnded(isDrawEnabled, scores) {
+  return (isDrawEnabled && scores.time >= scores.timeLimit) ||
+  (scores.scoreLimit === scores.red || scores.scoreLimit === scores.blue);
+}
+
 room.onGameTick = () => {
-  if (!gameRunning) {
+  const scores = room.getScores();
+
+  if (!gameRunning && !gameEnded) {
     if ((room.getBallPosition().x !== 0 || room.getBallPosition().y !== 0) && !goalScored) {
       gameRunning = true;
       sendKickOffPhrase();
@@ -125,11 +218,21 @@ room.onGameTick = () => {
       return;
     }
   }
+
+  if (gameRunning && checkIfGameEnded(isDrawEnabled, scores) && !gameEnded) {
+    sendEndingPhrase(isDrawEnabled);
+    gameEnded = true;
+
+    setTimeout(() => {
+      room.stopGame();
+    }, 5000);
+  }
 };
 
 room.onGameStop = () => {
   gameRunning = false;
   goalScored = false;
+  gameEnded = true;
 };
 
 room.onGamePause = () => {
@@ -153,10 +256,16 @@ room.onTeamGoal = () => {
   sendGoalPhrase();
 };
 
-room.onCron45GameSeconds = () => {
+room.onCron60GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionTeamsPhrase();
+};
+
+room.onCron75GameSeconds = () => {
+  if (gamePaused || !gameRunning) return;
+
+  sendPossessionAreaPhrase();
 };
 
 room.onCron120GameSeconds = () => {
