@@ -83,7 +83,7 @@ function getScoreMessage(score) {
   const message = (score.red === score.blue ? `Empate!\n` : `Vitória do **${(score.red > score.blue ? teams[RED_ID].name : teams[BLUE_ID].name)}**!\n`);
 
   return message.toUpperCase() +
-  `\n${teams[RED_ID].icon} ${teams[RED_ID].name} ${score.red} - ${score.blue} ${teams[BLUE_ID].name} ${teams[BLUE_ID].icon}\n`;
+  `\n ${teams[RED_ID].name} ${teams[RED_ID].icon} ${score.red} - ${score.blue} ${teams[BLUE_ID].icon}  ${teams[BLUE_ID].name}\n`;
 }
 
 function getGoalsListMessage(goals) {
