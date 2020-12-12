@@ -103,25 +103,26 @@ function sendEndingPhrase(isDrawEnabled) {
     percentagePerTeam = stats.getPossessionPerTeam(),
     areaPercentage = stats.getDistributionAreaPercentages();
 
-  let message;
+  let message, statsMessage;
 
   message = `Apita o árbitro, final de jogo! `.toUpperCase();
 
   message += getResultPhrase(score, isDrawEnabled).toUpperCase();
-  message += `\n${getCurrentScorePhrase(score)}\n`;
+  statsMessage = `${getCurrentScorePhrase(score)}\n`;
 
   if (goals.length > 0) {
-    message += `Gols: `;
+    statsMessage += `Gols: `;
     goals.forEach((goal) => {
-      message += `${getFormattedGoalTime(goal.time)} ${getTeamScoredIcon(goal)} ${goal.scorer.name}${goal.isOwnGoal === true ? ' (contra)' : ''}${goal.assist != null ? ` (${goal.assist.name})` : ''}, `;
+      statsMessage += `${getFormattedGoalTime(goal.time)} ${getTeamScoredIcon(goal)} ${goal.scorer.name}${goal.isOwnGoal === true ? ' (contra)' : ''}${goal.assist != null ? ` (${goal.assist.name})` : ''}, `;
     });
-    message = `${message.slice(0, -2)}\n`;
+    statsMessage = `${statsMessage.slice(0, -2)}\n`;
   }
 
-  message += `${getTeamsPossessionPhrase(matchInfo.teams, percentagePerTeam)}\n`;
-  message += `${getDistributionAreaPhrase(matchInfo.teams, areaPercentage)}`;
+  statsMessage += `${getTeamsPossessionPhrase(matchInfo.teams, percentagePerTeam)}\n`;
+  statsMessage += `${getDistributionAreaPhrase(matchInfo.teams, areaPercentage)}`;
 
-  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
+  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-bold');
+  room.sendAnnouncement(statsMessage, null, 0xEBEBEB, 'small-italic');
 }
 
 function getResultPhrase(score, isDrawEnabled) {
