@@ -273,16 +273,16 @@ room.onCron60GameSeconds = () => {
   sendPossessionTeamsPhrase();
 };
 
-room.onCron120GameSeconds = () => {
+room.onCron100GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionAreaPhrase();
 };
 
-room.onCron175GameSeconds = () => {
+room.onCron140GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
-  let message = (Math.round(Math.random() * 1) === 0 ? news.getOneTransfer() : news.getOneFakeNews());
+  let message = (Math.round(Math.random() * 2) === 0 ? news.getOneTransfer() : news.getOneFakeNews());
 
-  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
+  room.sendAnnouncement(message, null, 0x69C969, 'small-italic');
 };
