@@ -203,8 +203,19 @@ function getTeamScoredIcon(goal) {
 }
 
 function checkIfGameEnded(isDrawEnabled, scores) {
-  return (isDrawEnabled && scores.time >= scores.timeLimit) ||
-  (scores.scoreLimit === scores.red || scores.scoreLimit === scores.blue);
+  if (scores.scoreLimit === 0 && scores.timeLimit === 0) {
+    return false;
+  }
+  else if (scores.scoreLimit === 0) {
+    return (isDrawEnabled && scores.time >= scores.timeLimit) || (scores.time >= scores.timeLimit && scores.red != scores.blue);
+  }
+  else if (scores.timeLimit === 0) {
+    return (scores.red === scores.scoreLimit || scores.blue === scores.scoreLimit);
+  }
+  else {
+    return (isDrawEnabled && scores.time >= scores.timeLimit) ||
+    (scores.scoreLimit === scores.red || scores.scoreLimit === scores.blue);
+  }
 }
 
 room.onGameTick = () => {
