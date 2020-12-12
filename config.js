@@ -61,6 +61,7 @@ const config = {
         discord: { enabled: process.env.AMIGAVEL_DISCORD_IS_ENABLED, url: process.env.AMIGAVEL_DISCORD_WEBHOOK },
         ericko: { enabled: process.env.AMIGAVEL_ERICKO_IS_ENABLED, token: process.env.AMIGAVEL_ERICKO_TOKEN }
       },
+      'chr/game-info': {},
       'chr/narrator': {}
     }
   },
