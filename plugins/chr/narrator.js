@@ -63,13 +63,15 @@ function sendOpeningPhrase () {
 
 function sendGoalPhrase() {
   const goals = stats.getGoals(),
-    goal = goals[goals.length - 1];
+    goal = goals[goals.length - 1],
+    team = getGoalTeam(goal);
 
-  const messages = [`Éééééééééé do ${getGoalTeam(goal).name}, ${goal.isOwnGoal ? `${goal.scorer.name} jogou contra a própria meta!` : `${goal.scorer.name}!!!` }\nEram jogados ${getFormattedGoalTime(goal.time)} e foi lá, balançou o capim no fundo do gol!`];
+  const messages = [`Éééééééééé do ${team.name} ${team.icon}, ${goal.isOwnGoal ? `${goal.scorer.name} jogou contra a própria meta!` : `${goal.scorer.name}!!!` }\nEram jogados ${getFormattedGoalTime(goal.time)} e foi lá, balançou o capim no fundo do gol!`,
+    `Gooooooooooooool do ${team.name} ${team.icon}! ${goal.isOwnGoal ? `${goal.scorer.name} fez contra!` : `Professor, anota o nome aí: ${goal.scorer.name}!!!`}`];
 
   let message = `⚽ ${messages[Math.floor(Math.random() * messages.length)].toUpperCase()}`;
 
-  room.sendAnnouncement(message, null, 0xEBEBEB, 'small-italic');
+  room.sendAnnouncement(message, null, team.color, 'small-bold');
 }
 
 function getGoalTeam(goal) {

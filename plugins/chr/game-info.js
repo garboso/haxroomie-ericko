@@ -15,21 +15,21 @@ room.pluginSpec = {
 const RED_ID = 1,
   BLUE_ID = 2,
   ERICKO_TEAMS = [
-    { name: 'Afogados', acronym: 'AFO', icon: '🏊', custom: true },
-    { name: 'Barba de Itaboraí', acronym: 'BAR', icon: '🧔', custom: true },
-    { name: 'Bomba de Savvoya', acronym: 'BDS', icon: '💣', custom: true },
-    { name: 'Dribles Sacanas', acronym: 'DRI', icon: '✍️', custom: true },
-    { name: 'Lion Heart', acronym: 'LIO', icon: '🔥', custom: true },
-    { name: 'Loukos', acronym: 'LOU',  icon: '🏆', custom: true },
-    { name: 'Mistos', acronym: 'MIS', icon: '🐊', custom: true },
-    { name: 'Pó Pó Pó', acronym: 'POP', icon: '👃', custom: true },
-    { name: 'Vendo Monza', acronym: 'VEM', icon: '🚗', custom: true },
-    { name: 'Vitória do Bahia', acronym: 'VIT', icon: '🏖️', custom: true }];
+    { name: 'Afogados', acronym: 'AFO', icon: '🏊', custom: true, color: 0x8AACEA },
+    { name: 'Barba de Itaboraí', acronym: 'BAR', icon: '🧔', custom: true, color: 0xFF8C00 },
+    { name: 'Bomba de Savvoya', acronym: 'BDS', icon: '💣', custom: true, color: 0xCFA930 },
+    { name: 'Dribles Sacanas', acronym: 'DRI', icon: '✍️', custom: true, color: 0xF19292 },
+    { name: 'Lion Heart', acronym: 'LIO', icon: '🔥', custom: true, color: 0xF582D8 },
+    { name: 'Loukos', acronym: 'LOU',  icon: '🏆', custom: true, color: 0xF19292 },
+    { name: 'Mistos', acronym: 'MIS', icon: '🐊', custom: true, color: 0xFECE85 },
+    { name: 'Pó Pó Pó', acronym: 'POP', icon: '👃', custom: true, color: 0xF2C37D  },
+    { name: 'Vendo Monza', acronym: 'VEM', icon: '🚗', custom: true, color: 0x7BB0E1 },
+    { name: 'Vitória do Bahia', acronym: 'VIT', icon: '🏖️', custom: true, color: 0xF19292 }];
 
 let fixture = null,
   teamsInfos = {
-    1: { name: 'Vermelho', acronym: 'VER', icon: '🔴', custom: false },
-    2: { name: 'Azul', acronym: 'AZU', icon: '🔵', custom: false } };
+    1: { name: 'Vermelho', acronym: 'VER', icon: '🔴', custom: false, color: 0xF19292 },
+    2: { name: 'Azul', acronym: 'AZU', icon: '🔵', custom: false, color: 0x8AACEA } };
 
 function setFixture(player, args) {
   if (/^[0-9]*$/.test(args[0]) && parseInt(args[0]) >= 0) {
