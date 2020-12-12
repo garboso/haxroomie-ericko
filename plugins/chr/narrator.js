@@ -267,13 +267,13 @@ room.onTeamGoal = () => {
   sendGoalPhrase();
 };
 
-room.onCron60GameSeconds = () => {
+room.onCron120GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionTeamsPhrase();
 };
 
-room.onCron100GameSeconds = () => {
+room.onCron160GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionAreaPhrase();
