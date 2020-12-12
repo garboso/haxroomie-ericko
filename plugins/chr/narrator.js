@@ -44,11 +44,11 @@ function sendOpeningPhrase () {
   let message = `Os times já estão alinhados em campo e prontos para o início da partida.\n`,
     teams = matchInfo.teams;
 
-  message += `${(matchInfo.fixture !== null ? (matchInfo.fixture === 0 ? `Amistoso` : `${matchInfo.fixture}ª rodada`) : ``)} \n\n`;
-  message += `${teams[1].icon} ${teams[1].name} - ${teams[2].name} ${teams[2].icon} \n\n`;
+  message += `${(matchInfo.fixture !== null ? (matchInfo.fixture === 0 ? `Amistoso` : `${matchInfo.fixture}ª rodada`) : ``)} \n`;
+  message += `\t\t\t\t\t\t${teams[1].icon} ${teams[1].name} - ${teams[2].name} ${teams[2].icon} \n\n`;
 
   for (let id in teams) {
-    message += `${teams[id].name} ${teams[id].icon}\n    `;
+    message += `${teams[id].icon} ${teams[id].name}: `;
 
     if (teams[id].players !== undefined) {
       teams[id].players.forEach(player => message += `${player.name}, `);
