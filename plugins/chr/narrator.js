@@ -161,6 +161,30 @@ function sendPossessionAreaPhrase() {
   }
 }
 
+function sendMediaPhrase() {
+  let message,
+    color,
+    style,
+    dice = Math.round(Math.random() * 3);
+
+  if (dice === 0) {
+    message = news.getOneTransfer();
+    color = 0x81D981;
+    style = 'small-italic';
+  } else if (dice > 0 && dice < 2) {
+    message = news.getOneFakeNews();
+    color = 0x81D981;
+    style = 'small-italic';
+  } else {
+    message = news.getOneAd();
+    color = 0xDCDCDC;
+    style = 'bold';
+  }
+
+  if (message === null || color === null || style === null) return;
+  else room.sendAnnouncement(message, null, color, style);
+}
+
 function getTeamsPossessionPhrase(teams, percentagePerTeam) {
   return `Posse de Bola: ${teams[1].icon} ${percentagePerTeam[1]}% - ${teams[2].icon} ${percentagePerTeam[2]}%`;
 }
@@ -270,22 +294,20 @@ room.onTeamGoal = () => {
   sendGoalPhrase();
 };
 
-room.onCron120GameSeconds = () => {
+room.onCron145GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionTeamsPhrase();
 };
 
-room.onCron160GameSeconds = () => {
+room.onCron250GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
   sendPossessionAreaPhrase();
 };
 
-room.onCron140GameSeconds = () => {
+room.onCron120GameSeconds = () => {
   if (gamePaused || !gameRunning) return;
 
-  let message = (Math.round(Math.random() * 2) === 0 ? news.getOneTransfer() : news.getOneFakeNews());
-
-  room.sendAnnouncement(message, null, 0x69C969, 'small-italic');
+  sendMediaPhrase();
 };
