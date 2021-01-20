@@ -128,7 +128,7 @@ function getTeamScoredIcon(goal) {
 
 function getPossessionPerTeamMessage(percentage) {
   return `**Posse de Bola**\n\`\`\``.toUpperCase() +
-    `${teams[RED_ID].icon} ${percentage[`1`]}% - ${percentage[`2`]} ${teams[BLUE_ID].icon}\`\`\``;
+    `${teams[RED_ID].icon} ${percentage[`1`]}% - ${percentage[`2`]}% ${teams[BLUE_ID].icon}\`\`\``;
 }
 
 function getPlayersPossessionMessage(stats) {
