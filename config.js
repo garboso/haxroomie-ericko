@@ -3,7 +3,7 @@ const config = {
   amigavel:
   {
     autoStart: true,
-    roomName: 'ERICKÃO - Amigável',
+    roomName: 'Ericko - Amigável',
     noPlayer: true,
     maxPlayers: 20,
     public: false,
@@ -68,7 +68,7 @@ const config = {
   campeonato:
   {
     autoStart: true,
-    roomName: 'Ratamero Sports Arena',
+    roomName: '🏟️ Ratamero Sports Arena',
     noPlayer: true,
     maxPlayers: 20,
     public: false,
@@ -113,18 +113,19 @@ const config = {
       },
       'chr/fake-soccer-news': {},
       'chr/game-review': {
-        championshipMode: true,
         discord: { enabled: process.env.CAMPEONATO_DISCORD_IS_ENABLED, url: process.env.CAMPEONATO_DISCORD_WEBHOOK },
         ericko: { enabled: process.env.CAMPEONATO_ERICKO_IS_ENABLED, token: process.env.CAMPEONATO_ERICKO_TOKEN }
       },
-      'chr/game-info': {},
+      'chr/game-info': {
+        championshipMode: true
+      },
       'chr/narrator': {}
     }
   },
   campeonato2:
   {
     autoStart: true,
-    roomName: 'Estádio Municipal José Neném',
+    roomName: '🏟️ Estádio Municipal Vinicius Limongi',
     noPlayer: true,
     maxPlayers: 20,
     public: false,
@@ -169,11 +170,12 @@ const config = {
       },
       'chr/fake-soccer-news': {},
       'chr/game-review': {
-        championshipMode: true,
         discord: { enabled: process.env.CAMPEONATO_DISCORD_IS_ENABLED, url: process.env.CAMPEONATO_DISCORD_WEBHOOK },
         ericko: { enabled: process.env.CAMPEONATO_ERICKO_IS_ENABLED, token: process.env.CAMPEONATO_ERICKO_TOKEN }
       },
-      'chr/game-info': {},
+      'chr/game-info': {
+        championshipMode: true
+      },
       'chr/narrator': {}
     }
   }
