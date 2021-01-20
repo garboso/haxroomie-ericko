@@ -66,8 +66,8 @@ function sendGoalPhrase() {
     goal = goals[goals.length - 1],
     team = getGoalTeam(goal);
 
-  const messages = [`Éééééééééé do ${team.name} ${team.icon}, ${goal.isOwnGoal ? `${goal.scorer.name} jogou contra a própria meta!` : `${goal.scorer.name}!!!` }\nEram jogados ${getFormattedGoalTime(goal.time)} e foi lá, balançou o capim no fundo do gol!`,
-    `Gooooooooooooool do ${team.name} ${team.icon}! ${goal.isOwnGoal ? `${goal.scorer.name} fez contra!` : `Professor, anota o nome aí: ${goal.scorer.name}!!!`}`];
+  const messages = [`Éééééééééé do ${team.icon} ${team.name}, ${goal.isOwnGoal ? `${goal.scorer.name} jogou contra a própria meta!` : `${goal.scorer.name}!!!` }\nEram jogados ${getFormattedGoalTime(goal.time)} e foi lá, balançou o capim no fundo do gol!`,
+    `Gooooooooooooool do ${team.icon} ${team.name}! ${goal.isOwnGoal ? `${goal.scorer.name} fez contra!` : `Professor, anota o nome aí: ${goal.scorer.name}!!!`}`];
 
   let message = `⚽ ${messages[Math.floor(Math.random() * messages.length)].toUpperCase()}`;
 
