@@ -270,7 +270,11 @@ room.onGameTick = () => {
 room.onGameStop = () => {
   gameRunning = false;
   goalScored = false;
-  gameEnded = true;
+
+  if (!gameEnded) {
+    sendEndingPhrase(isDrawEnabled);
+    gameEnded = true;
+  }
 };
 
 room.onGamePause = () => {
