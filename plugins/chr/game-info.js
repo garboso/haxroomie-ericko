@@ -24,12 +24,14 @@ const RED_ID = 1,
     { name: 'Mistos', acronym: 'MIS', icon: '🐊', custom: true, color: 0xFECE85 },
     { name: 'Pó Pó Pó', acronym: 'POP', icon: '👃', custom: true, color: 0xF2C37D  },
     { name: 'Vendo Monza', acronym: 'VEM', icon: '🚗', custom: true, color: 0x7BB0E1 },
-    { name: 'Vitória do Bahia', acronym: 'VIT', icon: '🏖️', custom: true, color: 0xF19292 }];
+    { name: 'Vitória do Bahia', acronym: 'VIT', icon: '🏖️', custom: true, color: 0xF19292 }],
+  DEFAULT_TEAMS = {
+    1: { name: 'Vermelho', acronym: 'VER', icon: '🔴', custom: false, color: 0xF19292 },
+    2: { name: 'Azul', acronym: 'AZU', icon: '🔵', custom: false, color: 0x8AACEA }
+  };
 
 let fixture = null,
-  teamsInfos = {
-    1: { name: 'Vermelho', acronym: 'VER', icon: '🔴', custom: false, color: 0xF19292 },
-    2: { name: 'Azul', acronym: 'AZU', icon: '🔵', custom: false, color: 0x8AACEA } };
+  teamsInfos = DEFAULT_TEAMS;
 
 function setFixture(player, args) {
   if (/^[0-9]*$/.test(args[0]) && parseInt(args[0]) >= 0) {
@@ -101,9 +103,7 @@ function setTeam(player, args, teamId) {
 }
 
 function resetTeamsInfos() {
-  teamsInfos = {
-    1: { name: 'Vermelho', acronym: 'VER', icon: '🔴', custom: false },
-    2: { name: 'Azul', acronym: 'AZU', icon: '🔵', custom: false } };
+  teamsInfos = DEFAULT_TEAMS;
   fixture = null;
 }
 
@@ -143,12 +143,6 @@ room.onGameStart = (player) => {
       room.sendAnnouncement(`Para iniciar o jogo, selecione os times que irão jogar utilizando o comando !definir time vermelho <sigla> ou !definir time azul <sigla>`, player.id, 0xffbf00, 'small-bold');
       listAllTeams(player);
     }
-  }
-};
-
-room.onTeamVictory = () => {
-  if (room.pluginSpec.config.championshipMode) {
-    fixture = null;
   }
 };
 
