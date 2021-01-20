@@ -141,7 +141,7 @@ function sendPossessionTeamsPhrase() {
   const percentages = stats.getPossessionPerTeam(),
     teams = matchInfo.teams;
 
-  if (room.getScores() <= 30) {
+  if (room.getScores().time <= 30) {
     return;
   }
   else {
@@ -153,7 +153,7 @@ function sendPossessionAreaPhrase() {
   const percentages = stats.getDistributionAreaPercentages(),
     teams = matchInfo.teams;
 
-  if (room.getScores() <= 30) {
+  if (room.getScores().time <= 30) {
     return;
   }
   else {
