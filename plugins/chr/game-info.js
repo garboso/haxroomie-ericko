@@ -135,10 +135,7 @@ room.getMatchInfo = getMatchInfo;
 
 room.onGameStart = (player) => {
   if (room.pluginSpec.config.championshipMode) {
-    if (fixture === null) {
-      room.stopGame();
-      room.sendAnnouncement(`Para iniciar o jogo, informe por qual rodada será disputado o jogo através do comando '!definir rodada <número da rodada>'.`, player.id, 0xffbf00, 'small-bold');
-    } else if (!checkTeamNames()) {
+    if (!checkTeamNames()) {
       room.stopGame();
       room.sendAnnouncement(`Para iniciar o jogo, selecione os times que irão jogar utilizando o comando !definir time vermelho <sigla> ou !definir time azul <sigla>`, player.id, 0xffbf00, 'small-bold');
       listAllTeams(player);
