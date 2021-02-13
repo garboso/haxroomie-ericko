@@ -240,6 +240,66 @@ const colorsList = [
       textColor: 0xDE0000,
       colors: [0xCFA930, 0xFFFFFF, 0xFFFFFF]
     }
+  },
+  {
+    name: 'eaemaranga',
+    type: 1,
+    code: 'EA1',
+    options: {
+      angle: 90,
+      textColor: 0xFFFFFF,
+      colors: [0xFAAB7D, 0xFAAB7D, 0x004873]
+    }
+  },
+  {
+    name: 'X9 Paulistana',
+    type: 1,
+    code: 'X91',
+    options: {
+      angle: 90,
+      textColor: 0xFFFFFF,
+      colors: [0x820000, 0x820000, 0x0BB027]
+    }
+  },
+  {
+    name: 'Dinizistas Drogados',
+    type: 1,
+    code: 'DI1',
+    options: {
+      angle: 60,
+      textColor: 0xFFFFFF,
+      colors: [0xFF29F1, 0x1DBFC4, 0xFFD117]
+    }
+  },
+  {
+    name: 'Vasco',
+    type: 1,
+    code: 'VA1',
+    options: {
+      angle: 45,
+      textColor: 0xD41A0C,
+      colors: [0xFFFFFF, 0x000000, 0xFFFFFF]
+    }
+  },
+  {
+    name: 'Pibinho y los Yakus',
+    type: 1,
+    code: 'PI1',
+    options: {
+      angle: 90,
+      textColor: 0xFFF712,
+      colors: [0xFF1808, 0x000305]
+    }
+  },
+  {
+    name: 'Sunga Branca',
+    type: 1,
+    code: 'SU1',
+    options: {
+      angle: 90,
+      textColor: 0xFFFFFF,
+      colors: [0x702E1D, 0x702E1D, 0xFFFFFF]
+    }
   }
 ];
 
