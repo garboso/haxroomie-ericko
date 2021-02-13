@@ -44,12 +44,12 @@ function setFixture(player, args) {
     fixture = parseInt(args[0]);
 
     if (fixture === 0) {
-      room.sendAnnouncement(`👍 O jogo será registrado como amistoso.`, player.id, 0x69C969, 'small-bold');
+      room.sendAnnouncement(`👍 O jogo será registrado como desempate.`, player.id, 0x69C969, 'small-bold');
     } else {
       room.sendAnnouncement(`👍 O jogo será registrado como pertencente a ${fixture}ª rodada.`, player.id, 0x69C969, 'small-bold');
     }
   } else {
-    room.sendAnnouncement(`⚠️ O valor inserido não foi aceito. Por favor, insira um número correspondente a rodada, 0 para partida amistosa.`, player.id, 0xffbf00, 'small-bold');
+    room.sendAnnouncement(`⚠️ O valor inserido não foi aceito. Por favor, insira um número correspondente a rodada, 0 para desempate.`, player.id, 0xffbf00, 'small-bold');
   }
 }
 
@@ -64,7 +64,7 @@ function listAllTeams(player) {
 function showMatchInfo(player) {
   let message = '\n';
 
-  message += `${(fixture != null ? (fixture === 0 ? `Amistoso` : `Válido pela ${fixture}ª rodada:\n`) : `⚠️ Rodada não definida.`)}\n`;
+  message += `${(fixture != null ? (fixture === 0 ? `Desempate` : `Válido pela ${fixture}ª rodada:\n`) : `⚠️ Rodada não definida.`)}\n`;
   message += `${getTeamInfo(RED_ID)} - ${getTeamInfo(BLUE_ID)}`;
 
   room.sendAnnouncement(message, player.id, 0x4094FF, 'small-bold');

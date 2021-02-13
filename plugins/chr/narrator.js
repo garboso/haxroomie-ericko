@@ -115,11 +115,13 @@ function sendEndingPhrase(isDrawEnabled) {
     goals.forEach((goal) => {
       statsMessage += `${getFormattedGoalTime(goal.time)} ${getTeamScoredIcon(goal)} ${goal.scorer.name}${goal.isOwnGoal === true ? ' (contra)' : ''}${goal.assist != null ? ` (${goal.assist.name})` : ''}, `;
     });
-    statsMessage = `${statsMessage.slice(0, -2)}\n`;
+    statsMessage = `${statsMessage.slice(0, -2)}`;
   }
 
-  statsMessage += `${getTeamsPossessionPhrase(matchInfo.teams, percentagePerTeam)}\n`;
-  statsMessage += `${getDistributionAreaPhrase(matchInfo.teams, areaPercentage)}`;
+  if (matchInfo.fixture !== 0) {
+    statsMessage += `\n${getTeamsPossessionPhrase(matchInfo.teams, percentagePerTeam)}\n`;
+    statsMessage += `${getDistributionAreaPhrase(matchInfo.teams, areaPercentage)}`;
+  }
 
   room.sendAnnouncement(message, null, 0xEBEBEB, 'small-bold');
   room.sendAnnouncement(statsMessage, null, 0xEBEBEB, 'small-italic');
